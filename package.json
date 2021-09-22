@@ -1,0 +1,17 @@
+{
+  "name": "@hakansundstrom/get-dup-number",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dup": "node ./index.js"
+  },
+  "bin": {
+    "dup": "./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}
