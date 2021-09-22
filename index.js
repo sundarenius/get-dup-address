@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { getDb, writeToDb } from './handleDb.js'
+import color from 'colors-cli'
 
 // Borde jobba mot en DB istället men var lazy och gör en write to file istället.
 // Funkar ju som en DB  ändå ;P
@@ -18,16 +19,20 @@ const checkIfAdded = (adress, lghNr) => {
   const adressNoSpace = adress.replace(/ /g, '')
   console.log('----')
   if (db[adressNoSpace] && db[adressNoSpace].includes(lghNr)) {
-    console.log(`STATUS: ${adress} ${lghNr} already got the message!! DONE`)
+    console.log(color.blue(`STATUS: ${adress} ${lghNr} already got the message!! DONE`))
   } else {
-    console.log(`Status: ${adress} ${lghNr} have not heard the message`)
-    console.log('I\'ll add them now to the DB!')
+    const processAddress = process.argv.slice(2)
+    console.log(processAddress)
+    console.log(color.green(`Status: ${adress} ${lghNr} have not heard the message`))
+    console.log(color.green('I\'ll add them now to the DB!'))
+    console.log(color.green(`**  ${processAddress.join(' ')}  **`))
     addToDb(adress, lghNr)
   }
 }
 
-const adress = process.argv.slice(2, process.argv.length - 1).join('') // Can handle adress with spaces
-const lghNr = Number(process.argv.pop())
+const argv = [ ...process.argv ]
+const adress = argv.slice(2, process.argv.length - 1).join('') // Can handle adress with spaces
+const lghNr = Number(argv.pop())
 
 console.log(adress)
 console.log(lghNr)

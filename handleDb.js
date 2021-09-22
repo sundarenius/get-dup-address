@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'fs';
+import color from 'colors-cli';
 
 export const getDb = () => {
   const content = fs.readFileSync("./db.json");
@@ -12,6 +13,6 @@ export const writeToDb = (newData) => {
       console.error(err)
       return
     }
-    console.log(`File updated succesfully`)
+    console.log(color.green(`File updated succesfully`))
   })
 }
